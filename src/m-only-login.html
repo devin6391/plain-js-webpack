@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Untitled Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="main">
+      <div class="logo-area">
+        <p class="freecharge-logo"><img src="assets/images/freecharge.png"  /></p>
+        <p class="merchant-logo"><img src="assets/images/merchant.png"  /></p>
+      </div>
+      <div class="top-offer">
+        <p>Flat <cite>&#8377;</cite>100 cashback on min booking of `100, Valid once per user</p>
+      </div>
+      <div class="wrapper">
+        <div class="you-pay-cont">
+          <div>YOUPAY <span><cite>&#8377;</cite>1100</span> </div>
+          <div class="info"> <img src="assets/images/info.png" alt="info"/>
+            <div class="bg-popup"></div>
+            <div class="info-popup" >
+              <table cellpadding="0px" cellspacing="0px" border="0px" width="100%">
+                <tr class="first">
+                  <td>Transaction Amount</td>
+                  <td><cite>&#8377;</cite>300</td>
+                </tr>
+                <tr>
+                  <td>Convenience Fee</td>
+                  <td><cite>&#8377;</cite>100</td>
+                </tr>
+                <tr class="last">
+                  <td>You Pay</td>
+                  <td><cite>&#8377;</cite>800</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <section id="signup-page" class="hidden page">
+          <%= require('html-loader!./m-only-1/m-only-1.html') %>
+        </section>
+        <section id="signin-page" class="hidden page">
+          <%= require('html-loader!./m-only-2/m-only-2.html') %>
+        </section>
+        <section id="signin-page" class="hidden page">
+          <%= require('html-loader!./m-only-sp/m-only-sp.html') %>
+        </section>
+      </div>
+      <div class="footer">
+        <p>©Freecharge Payment Technologies Pvt. Ltd. All Rights Reserved</p>
+        <img src="assets/images/footer-logo.png" width="330px"/>
+      </div>
+    </div>
+  </body>
+</html>
