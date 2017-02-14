@@ -1,4 +1,6 @@
 var path = require('path');
+var webpack = require('webpack');
+var CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -15,7 +17,8 @@ module.exports = {
   entry: {
     "unifiedLogin": path.join(__dirname, sourceFolder, "unified-login.js"),
     "mOnly": path.join(__dirname, sourceFolder, "m-only.js"),
-    "mOnlyLogin": path.join(__dirname, sourceFolder, "m-only-login.js")
+    "mOnlyLogin": path.join(__dirname, sourceFolder, "m-only-login.js"),
+    "fc-jq": path.join(__dirname, sourceFolder, "assets", "scripts", "fc-jq.js")
   },
   devtool: 'cheap-module-source-map',
   output: {
@@ -38,6 +41,11 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.optimize.DedupePlugin(),
+    new CommonsChunkPlugin("commons.chunk.js"),
+    new webpack.EnvironmentPlugin([
+      'NODE_ENV'
+    ]),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, sourceFolder, "unified-login.html"),
       inject: true,
@@ -45,7 +53,7 @@ module.exports = {
         collapseWhitespace: true,
         removeComments: true
       },
-      chunks: ['unifiedLogin'],
+      excludeChunks: ['mOnly', 'mOnlyLogin', 'jquery'],
       filename: path.join(__dirname, distFolder, "unified-login.html")
     }),
     new HtmlWebpackPlugin({
@@ -56,7 +64,7 @@ module.exports = {
         collapseWhitespace: true,
         removeComments: true
       },
-      chunks: ['mOnly'],
+      excludeChunks: ['unifiedLogin', 'mOnlyLogin', 'jquery'],
     }),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, sourceFolder, "m-only-login.html"),
@@ -66,7 +74,7 @@ module.exports = {
         collapseWhitespace: true,
         removeComments: true
       },
-      chunks: ['mOnlyLogin'],
+      excludeChunks: ['unifiedLogin', 'mOnly', 'jquery'],
     }),
     new ExtractTextPlugin(path.join("assets", "styles", "[name]-[contenthash].css")),
     new CopyWebpackPlugin([

@@ -1,0 +1,5 @@
+{
+  "/api/": "/",
+  "/show": "/posts/1",
+  "/blog/:category": "/posts?category=:category"
+}
