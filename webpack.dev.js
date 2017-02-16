@@ -49,20 +49,20 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, sourceFolder, "unified-login.html"),
       inject: true,
-      excludeChunks: ['mOnly', 'mOnlyLogin', 'jquery'],
+      excludeChunks: ['mOnly', 'mOnlyLogin', 'fc-jq'],
       filename: path.join(__dirname, distFolder, "unified-login.html")
     }),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, sourceFolder, "m-only.html"),
       filename: path.join(__dirname, distFolder, "m-only.html"),
       inject: true,
-      excludeChunks: ['unifiedLogin', 'mOnlyLogin', 'jquery'],
+      excludeChunks: ['unifiedLogin', 'mOnlyLogin', 'fc-jq'],
     }),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, sourceFolder, "m-only-login.html"),
       filename: path.join(__dirname, distFolder, "m-only-login.html"),
       inject: true,
-      excludeChunks: ['unifiedLogin', 'mOnly', 'jquery'],
+      excludeChunks: ['unifiedLogin', 'mOnly', 'fc-jq'],
     }),
     new ExtractTextPlugin(path.join("assets", "styles", "[name]-[contenthash].css")),
     new CopyWebpackPlugin([

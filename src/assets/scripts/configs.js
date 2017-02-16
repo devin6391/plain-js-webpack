@@ -2,7 +2,7 @@ export const ApiBase = {
     "production": {
         "api" : "/"
     },
-    "dev": {
+    "development": {
         "api": "http://localhost:3004"
     }
 };

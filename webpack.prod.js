@@ -6,7 +6,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-const ENV = process.env.ENV = process.env.NODE_ENV = 'development';
+const ENV = process.env.ENV = process.env.NODE_ENV = 'production';
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 3000;
 
@@ -53,7 +53,7 @@ module.exports = {
         collapseWhitespace: true,
         removeComments: true
       },
-      excludeChunks: ['mOnly', 'mOnlyLogin', 'jquery'],
+      excludeChunks: ['mOnly', 'mOnlyLogin', 'fc-jq'],
       filename: path.join(__dirname, distFolder, "unified-login.html")
     }),
     new HtmlWebpackPlugin({
@@ -64,7 +64,7 @@ module.exports = {
         collapseWhitespace: true,
         removeComments: true
       },
-      excludeChunks: ['unifiedLogin', 'mOnlyLogin', 'jquery'],
+      excludeChunks: ['unifiedLogin', 'mOnlyLogin', 'fc-jq'],
     }),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, sourceFolder, "m-only-login.html"),
@@ -74,7 +74,7 @@ module.exports = {
         collapseWhitespace: true,
         removeComments: true
       },
-      excludeChunks: ['unifiedLogin', 'mOnly', 'jquery'],
+      excludeChunks: ['unifiedLogin', 'mOnly', 'fc-jq'],
     }),
     new ExtractTextPlugin(path.join("assets", "styles", "[name]-[contenthash].css")),
     new CopyWebpackPlugin([
