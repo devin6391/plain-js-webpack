@@ -34,6 +34,7 @@ export var httpGet = function(url, queryObject, formatResponse) {
     }
     httpRequest.send(null);
   });
+  return promise;
 }
 
 export var httpPost = function(url, queryObject, postObj, formatResponse) {
@@ -57,4 +58,5 @@ export var httpPost = function(url, queryObject, postObj, formatResponse) {
     }
     httpRequest.send(postObj);
   });
+  return promise;
 }

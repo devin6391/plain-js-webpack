@@ -14,69 +14,75 @@ const sourceFolder = "src";
 const distFolder = "static";
 
 module.exports = {
-  entry: {
-    "babel-polyfill": "babel-polyfill",
-    "unifiedLogin": path.join(__dirname, sourceFolder, "unified-login.js"),
-    "mOnly": path.join(__dirname, sourceFolder, "m-only.js"),
-    "mOnlyLogin": path.join(__dirname, sourceFolder, "m-only-login.js"),
-    "jquery": path.join(__dirname, sourceFolder, "assets", "scripts", "fc-jq.js")
-  },
-  devtool: 'cheap-module-source-map',
-  output: {
-    path: path.join(__dirname, distFolder),
-    publicPath: '',
-    filename: '[name]-[chunkhash].js'
-  },
-  module: {
-    loaders: [
-      { test: /\.css$/, loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' }) },
-      { test: /\.(jpe?g|png|gif|svg)$/i, loader: 'file-loader?name=../images/[name].[ext]' },
-      {
-      test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['es2015']
-        }
-      }
-    ]
-  },
-  plugins: [
-    new webpack.optimize.DedupePlugin(),
-    new CommonsChunkPlugin("commons.chunk.js"),
-    new webpack.EnvironmentPlugin([
-      'NODE_ENV'
-    ]),
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, sourceFolder, "unified-login.html"),
-      inject: true,
-      excludeChunks: ['mOnly', 'mOnlyLogin', 'fc-jq'],
-      filename: path.join(__dirname, distFolder, "unified-login.html")
-    }),
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, sourceFolder, "m-only.html"),
-      filename: path.join(__dirname, distFolder, "m-only.html"),
-      inject: true,
-      excludeChunks: ['unifiedLogin', 'mOnlyLogin', 'fc-jq'],
-    }),
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, sourceFolder, "m-only-login.html"),
-      filename: path.join(__dirname, distFolder, "m-only-login.html"),
-      inject: true,
-      excludeChunks: ['unifiedLogin', 'mOnly', 'fc-jq'],
-    }),
-    new ExtractTextPlugin(path.join("assets", "styles", "[name]-[contenthash].css")),
-    new CopyWebpackPlugin([
-      { from: path.join(__dirname, sourceFolder, "assets", "images") , to: path.join(__dirname, distFolder, "assets", "images") },
-    ]),
-  ],
-  devServer: {
-    port: PORT,
-    host: HOST,
-    historyApiFallback: true,
-    watchOptions: {
-      aggregateTimeout: 300,
-      poll: 1000
-    }
-  },
+	entry: {
+		"babel-polyfill": "babel-polyfill",
+		"unifiedLogin": path.join(__dirname, sourceFolder, "unified-login.js"),
+		"mOnly": path.join(__dirname, sourceFolder, "m-only.js"),
+		"mOnlyLogin": path.join(__dirname, sourceFolder, "m-only-login.js"),
+		"jquery": path.join(__dirname, sourceFolder, "assets", "scripts", "fc-jq.js")
+	},
+	devtool: 'cheap-module-source-map',
+	output: {
+		path: path.join(__dirname, distFolder),
+		publicPath: '',
+		filename: '[name]-[chunkhash].js'
+	},
+	module: {
+		loaders: [{
+			test: /\.css$/,
+			loader: ExtractTextPlugin.extract({
+				fallback: 'style-loader',
+				use: 'css-loader'
+			})
+		}, {
+			test: /\.(jpe?g|png|gif|svg)$/i,
+			loader: 'file-loader?name=../images/[name].[ext]'
+		}, {
+			test: /\.js$/,
+			exclude: /(node_modules|bower_components)/,
+			loader: 'babel-loader',
+			query: {
+				presets: ['es2015']
+			}
+		}]
+	},
+	plugins: [
+		new webpack.optimize.DedupePlugin(),
+		new CommonsChunkPlugin("commons.chunk.js"),
+		new webpack.EnvironmentPlugin([
+			'NODE_ENV'
+		]),
+		new HtmlWebpackPlugin({
+			template: path.join(__dirname, sourceFolder, "unified-login.html"),
+			inject: true,
+			excludeChunks: ['mOnly', 'mOnlyLogin', 'fc-jq'],
+			filename: path.join(__dirname, distFolder, "unified-login.html")
+		}),
+		new HtmlWebpackPlugin({
+			template: path.join(__dirname, sourceFolder, "m-only.html"),
+			filename: path.join(__dirname, distFolder, "m-only.html"),
+			inject: true,
+			excludeChunks: ['unifiedLogin', 'mOnlyLogin', 'fc-jq'],
+		}),
+		new HtmlWebpackPlugin({
+			template: path.join(__dirname, sourceFolder, "m-only-login.html"),
+			filename: path.join(__dirname, distFolder, "m-only-login.html"),
+			inject: true,
+			excludeChunks: ['unifiedLogin', 'mOnly', 'fc-jq'],
+		}),
+		new ExtractTextPlugin(path.join("assets", "styles", "[name]-[contenthash].css")),
+		new CopyWebpackPlugin([{
+			from: path.join(__dirname, sourceFolder, "assets", "images"),
+			to: path.join(__dirname, distFolder, "assets", "images")
+		}, ]),
+	],
+	devServer: {
+		port: PORT,
+		host: HOST,
+		historyApiFallback: true,
+		watchOptions: {
+			aggregateTimeout: 300,
+			poll: 1000
+		}
+	},
 };
