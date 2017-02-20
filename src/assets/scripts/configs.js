@@ -3,6 +3,6 @@ export const ApiBase = {
         "api" : "/"
     },
     "development": {
-        "api": "http://localhost:3004"
+        "api": "http://localhost:3004/"
     }
 };

@@ -15,6 +15,7 @@ const distFolder = "static";
 
 module.exports = {
   entry: {
+    "babel-polyfill": "babel-polyfill",
     "unifiedLogin": path.join(__dirname, sourceFolder, "unified-login.js"),
     "mOnly": path.join(__dirname, sourceFolder, "m-only.js"),
     "mOnlyLogin": path.join(__dirname, sourceFolder, "m-only-login.js"),
