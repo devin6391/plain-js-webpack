@@ -1,5 +1,10 @@
+<% if(process.env.NODE_ENV == "development") { %>
+  <%= require('ejs-loader!./messages2.html')(require("./mock-data.js").co_ui) %>
+<% } else { %>
+  <%= require('html-loader!./messages.html') %>
+<% } %>
 <div class="login-flow" id="sign-in" style="display:none">
-  <h2>SIGN IN</h2>
+  <h2>SIGN UPP</h2>
   <div class="form-cont">
     <input type="text" placeholder="ENTER MOBILE NUMBER OR EMAIL ID" class="user">
     <span>Invalid user id</span> </div>
@@ -36,7 +41,7 @@
 </div>
 
 <div class="login-flow" id="OTP" style="display:none;">
-  <h2>ENTER OTP</h2>
+  <h2>ENTER OTOP</h2>
   <p class="otp-top-msz">We have sent an OTP to <span>9036361893</span> and <span>prateek.sharma@gmail.com</span> <br>
     Please enter it below.</p>
   <div class="form-cont otp-cont">
@@ -65,7 +70,7 @@
   </div>
 </div>
 <div class="login-flow" id="sign-up" style="display:block;">
-  <h2>SIGN IN</h2>
+  <h2>SIGN UPPPPP</h2>
   <div class="form-cont">
     <input type="text" placeholder="ENTER MOBILE NUMBER OR EMAIL ID" value="prateek.sharma@freecharge.com" class="user">
     <span>Invalid user id</span> </div>

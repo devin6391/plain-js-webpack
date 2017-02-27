@@ -12,7 +12,7 @@ const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 3000;
 
 const sourceFolder = "src";
-const distFolder = "static";
+const distFolder = "dist";
 
 module.exports = {
 	entry: {
@@ -20,7 +20,7 @@ module.exports = {
 		"unifiedLogin": path.join(__dirname, sourceFolder, "unified-login.js"),
 		"mOnly": path.join(__dirname, sourceFolder, "m-only.js"),
 		"mOnlyLogin": path.join(__dirname, sourceFolder, "m-only-login.js"),
-		"fc-jq": path.join(__dirname, sourceFolder, "assets", "scripts", "fc-jq.js")
+		"custom-jq": path.join(__dirname, sourceFolder, "common", "scripts", "custom-jq.js")
 	},
 	devtool: 'cheap-module-source-map',
 	output: {
@@ -37,7 +37,7 @@ module.exports = {
 			})
 		}, {
 			test: /\.(jpe?g|png|gif|svg)$/i,
-			loader: 'file-loader?name=../images/[name].[ext]'
+			loader: 'file-loader?name=../../images/[name].[ext]'
 		}, {
 			test: /\.js$/,
 			exclude: /(node_modules|bower_components)/,
@@ -67,7 +67,7 @@ module.exports = {
 				collapseWhitespace: true,
 				removeComments: true
 			},
-			excludeChunks: ['mOnly', 'mOnlyLogin', 'fc-jq'],
+			excludeChunks: ['mOnly', 'mOnlyLogin', 'custom-jq'],
 			filename: path.join(__dirname, distFolder, "unified-login.html")
 		}),
 		new HtmlWebpackPlugin({
@@ -78,7 +78,7 @@ module.exports = {
 				collapseWhitespace: true,
 				removeComments: true
 			},
-			excludeChunks: ['unifiedLogin', 'mOnlyLogin', 'fc-jq'],
+			excludeChunks: ['unifiedLogin', 'mOnlyLogin', 'custom-jq'],
 		}),
 		new HtmlWebpackPlugin({
 			template: path.join(__dirname, sourceFolder, "m-only-login.html"),
@@ -88,12 +88,12 @@ module.exports = {
 				collapseWhitespace: true,
 				removeComments: true
 			},
-			excludeChunks: ['unifiedLogin', 'mOnly', 'fc-jq'],
+			excludeChunks: ['unifiedLogin', 'mOnly', 'custom-jq'],
 		}),
-		new ExtractTextPlugin(path.join("assets", "styles", "[name]-[contenthash].css")),
+		new ExtractTextPlugin(path.join("common", "styles", "[name]-[contenthash].css")),
 		new CopyWebpackPlugin([{
-			from: path.join(__dirname, sourceFolder, "assets", "images"),
-			to: path.join(__dirname, distFolder, "assets", "images")
+			from: path.join(__dirname, sourceFolder, "images"),
+			to: path.join(__dirname, distFolder, "images")
 		}, ]),
 		new UglifyJsPlugin({
 			beautify: false,

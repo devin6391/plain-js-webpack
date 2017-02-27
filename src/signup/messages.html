@@ -1,0 +1,10 @@
+<c:if test="${not empty co_ui.getCampaignText() && not empty co_ui.getCampaignLink()}">
+    <div ng-if="vm.showCampaignBlock" class="offer mobile-only">
+        <a id="campaignLinkOffer" href="#" ng-click="vm.showCampaignFrame = true;">${co_ui.getCampaignText()}<br></a>
+        <span ng-click="vm.closeCampaignBlock()"></span>
+    </div>
+    <div ng-if="vm.showCampaignBlock" class="offer only-desktop">
+        <a id="campaignLinkOffer" href="/tnc?src=${co_ui.getCampaignLink()}" target="_blank">${co_ui.getCampaignText()}<br></a>
+        <span ng-click="vm.closeCampaignBlock()"></span>
+    </div>
+</c:if>
