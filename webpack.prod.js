@@ -6,6 +6,9 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 var CompressionPlugin = require("compression-webpack-plugin");
+let FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+var HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
+var ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
 const ENV = process.env.ENV = process.env.NODE_ENV = 'production';
 const HOST = process.env.HOST || 'localhost';
@@ -17,9 +20,8 @@ const distFolder = "dist";
 module.exports = {
 	entry: {
 		"babel-polyfill": "babel-polyfill",
-		"unifiedLogin": path.join(__dirname, sourceFolder, "unified-login.js"),
-		"mOnly": path.join(__dirname, sourceFolder, "m-only.js"),
-		"mOnlyLogin": path.join(__dirname, sourceFolder, "m-only-login.js"),
+		"index": path.join(__dirname, sourceFolder, "index.js"),
+		"app-shell": path.join(__dirname, sourceFolder, "app-shell.js"),
 		"custom-jq": path.join(__dirname, sourceFolder, "common", "scripts", "custom-jq.js")
 	},
 	devtool: 'cheap-module-source-map',
@@ -61,36 +63,52 @@ module.exports = {
 			minRatio: 0.8
 		}),
 		new HtmlWebpackPlugin({
-			template: path.join(__dirname, sourceFolder, "unified-login.html"),
+			template: path.join(__dirname, sourceFolder, "index.html"),
 			inject: true,
-			minify: {
-				collapseWhitespace: true,
-				removeComments: true
-			},
-			excludeChunks: ['mOnly', 'mOnlyLogin', 'custom-jq'],
-			filename: path.join(__dirname, distFolder, "unified-login.html")
+			// minify: {
+			// 	collapseWhitespace: true,
+			// 	removeComments: true
+			// },
+			excludeChunks: ['custom-jq'],
+			filename: path.join(__dirname, distFolder, "index.html"),
 		}),
-		new HtmlWebpackPlugin({
-			template: path.join(__dirname, sourceFolder, "m-only.html"),
-			filename: path.join(__dirname, distFolder, "m-only.html"),
-			inject: true,
-			minify: {
-				collapseWhitespace: true,
-				removeComments: true
-			},
-			excludeChunks: ['unifiedLogin', 'mOnlyLogin', 'custom-jq'],
-		}),
-		new HtmlWebpackPlugin({
-			template: path.join(__dirname, sourceFolder, "m-only-login.html"),
-			filename: path.join(__dirname, distFolder, "m-only-login.html"),
-			inject: true,
-			minify: {
-				collapseWhitespace: true,
-				removeComments: true
-			},
-			excludeChunks: ['unifiedLogin', 'mOnly', 'custom-jq'],
+		new ScriptExtHtmlWebpackPlugin({
+			defaultAttribute: 'async'
 		}),
 		new ExtractTextPlugin(path.join("common", "styles", "[name]-[contenthash].css")),
+		// new FaviconsWebpackPlugin({
+		// 	// Your source logo
+		// 	logo: path.join(__dirname, sourceFolder, "images", "logo_JavaScript.png"),
+		// 	// The prefix for all image files (might be a folder or a name)
+		// 	prefix: 'icons-[hash]/',
+		// 	// Emit all stats of the generated icons
+		// 	emitStats: false,
+		// 	// The name of the json containing all favicon information
+		// 	statsFilename: 'iconstats-[hash].json',
+		// 	// Generate a cache file with control hashes and
+		// 	// don't rebuild the favicons until those hashes change
+		// 	persistentCache: true,
+		// 	// Inject the html into the html-webpack-plugin
+		// 	inject: true,
+		// 	// favicon background color (see https://github.com/haydenbleasel/favicons#usage)
+		// 	background: '#fff',
+		// 	// favicon app title (see https://github.com/haydenbleasel/favicons#usage)
+		// 	title: 'VanillaJS-webpack App',
+		//
+		// 	// which icons should be generated (see https://github.com/haydenbleasel/favicons#usage)
+		// 	icons: {
+		// 		android: true,
+		// 		appleIcon: true,
+		// 		appleStartup: true,
+		// 		coast: false,
+		// 		favicons: true,
+		// 		firefox: true,
+		// 		opengraph: false,
+		// 		twitter: false,
+		// 		yandex: false,
+		// 		windows: false
+		// 	}
+		// }),
 		new CopyWebpackPlugin([{
 			from: path.join(__dirname, sourceFolder, "images"),
 			to: path.join(__dirname, distFolder, "images")
