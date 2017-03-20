@@ -6,7 +6,6 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 let FaviconsWebpackPlugin = require('favicons-webpack-plugin');
-var HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
 
 const ENV = process.env.ENV = process.env.NODE_ENV = 'development';
 const HOST = process.env.HOST || 'localhost';
@@ -57,47 +56,46 @@ module.exports = {
 		new webpack.EnvironmentPlugin([
 			'NODE_ENV'
 		]),
-		new HtmlWebpackInlineSourcePlugin(),
 		new HtmlWebpackPlugin({
 			template: path.join(__dirname, sourceFolder, "index.html"),
-			inject: false,
-			// excludeChunks: ['app-shell', 'custom-jq'],
+			inject: true,
+			excludeChunks: ['custom-jq'],
 			filename: path.join(__dirname, distFolder, "index.html")
 		}),
 		// extractCSS,
-		// new FaviconsWebpackPlugin({
-		// 	// Your source logo
-		// 	logo: path.join(__dirname, sourceFolder, "images", "logo_JavaScript.png"),
-		// 	// The prefix for all image files (might be a folder or a name)
-		// 	prefix: 'icons-[hash]/',
-		// 	// Emit all stats of the generated icons
-		// 	emitStats: false,
-		// 	// The name of the json containing all favicon information
-		// 	statsFilename: 'iconstats-[hash].json',
-		// 	// Generate a cache file with control hashes and
-		// 	// don't rebuild the favicons until those hashes change
-		// 	persistentCache: true,
-		// 	// Inject the html into the html-webpack-plugin
-		// 	inject: true,
-		// 	// favicon background color (see https://github.com/haydenbleasel/favicons#usage)
-		// 	background: '#fff',
-		// 	// favicon app title (see https://github.com/haydenbleasel/favicons#usage)
-		// 	title: 'VanillaJS-webpack App',
-		//
-		// 	// which icons should be generated (see https://github.com/haydenbleasel/favicons#usage)
-		// 	icons: {
-		// 		android: true,
-		// 		appleIcon: true,
-		// 		appleStartup: true,
-		// 		coast: false,
-		// 		favicons: true,
-		// 		firefox: true,
-		// 		opengraph: false,
-		// 		twitter: false,
-		// 		yandex: false,
-		// 		windows: false
-		// 	}
-		// }),
+		new FaviconsWebpackPlugin({
+			// Your source logo
+			logo: path.join(__dirname, sourceFolder, "images", "logo_JavaScript.png"),
+			// The prefix for all image files (might be a folder or a name)
+			prefix: 'icons-[hash]/',
+			// Emit all stats of the generated icons
+			emitStats: false,
+			// The name of the json containing all favicon information
+			statsFilename: 'iconstats-[hash].json',
+			// Generate a cache file with control hashes and
+			// don't rebuild the favicons until those hashes change
+			persistentCache: true,
+			// Inject the html into the html-webpack-plugin
+			inject: true,
+			// favicon background color (see https://github.com/haydenbleasel/favicons#usage)
+			background: '#fff',
+			// favicon app title (see https://github.com/haydenbleasel/favicons#usage)
+			title: 'VanillaJS-webpack App',
+
+			// which icons should be generated (see https://github.com/haydenbleasel/favicons#usage)
+			icons: {
+				android: true,
+				appleIcon: true,
+				appleStartup: true,
+				coast: false,
+				favicons: true,
+				firefox: true,
+				opengraph: false,
+				twitter: false,
+				yandex: false,
+				windows: false
+			}
+		}),
 		new CopyWebpackPlugin([{
 			from: path.join(__dirname, sourceFolder, "images"),
 			to: path.join(__dirname, distFolder, "images")
