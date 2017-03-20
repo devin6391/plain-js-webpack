@@ -52,7 +52,21 @@ module.exports = {
 					presets: ['es2015']
 				}
 			}
-		}]
+		},
+		{
+			test: /\.scss$/,
+			use: [{
+				loader: "style-loader"
+			}, {
+				loader: "css-loader"
+			}, {
+				loader: "sass-loader",
+				options: {
+					includePaths: ["absolute/path/a", "absolute/path/b"]
+				}
+			}]
+		}
+	]
 	},
 	plugins: [
 		new CommonsChunkPlugin("commons.chunk.js"),

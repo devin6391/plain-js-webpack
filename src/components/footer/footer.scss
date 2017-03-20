@@ -1,0 +1,25 @@
+.footer {
+  position: fixed;
+  bottom:0;
+  width: 100vw;
+  ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    justify-content: center;
+    li {
+      margin: 0 10px;
+      padding: 5px 5px;
+      background-color: #a233ef;
+      cursor: pointer;
+      transition: 0.2s;
+      &:hover {
+        box-shadow: 1px 1px 0px 4px rgba(0, 0, 0, 0.5);
+      }
+    }
+  }
+  p {
+    text-align: center;
+  }
+}

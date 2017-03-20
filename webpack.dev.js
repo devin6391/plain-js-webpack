@@ -32,24 +32,38 @@ module.exports = {
 	},
 	module: {
 		rules: [
-		// 	{
-		// 	test: /\.css$/,
-		// 	exclude: /(node_modules|bower_components)/,
-		// 	use: extractCSS.extract([ 'css-loader', 'style-loader' ])
-		// },
-		{
-			test: /\.(jpe?g|png|gif|svg)$/i,
-			use: 'file-loader?name=../../images/[name].[ext]'
-		}, {
-			test: /\.js$/,
-			exclude: /(node_modules|bower_components)/,
-			use: {
-				loader: 'babel-loader',
-				options: {
-					presets: ['es2015']
+			// 	{
+			// 	test: /\.css$/,
+			// 	exclude: /(node_modules|bower_components)/,
+			// 	use: extractCSS.extract([ 'css-loader', 'style-loader' ])
+			// },
+			{
+				test: /\.(jpe?g|png|gif|svg)$/i,
+				use: 'file-loader?name=../../images/[name].[ext]'
+			}, {
+				test: /\.js$/,
+				exclude: /(node_modules|bower_components)/,
+				use: {
+					loader: 'babel-loader',
+					options: {
+						presets: ['es2015']
+					}
 				}
+			},
+			{
+				test: /\.scss$/,
+				use: [{
+					loader: "style-loader"
+				}, {
+					loader: "css-loader"
+				}, {
+					loader: "sass-loader",
+					options: {
+						includePaths: ["absolute/path/a", "absolute/path/b"]
+					}
+				}]
 			}
-		}, ]
+		]
 	},
 	plugins: [
 		new CommonsChunkPlugin("commons.chunk.js"),
