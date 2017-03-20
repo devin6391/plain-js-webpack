@@ -1,0 +1,6 @@
+.hide-children * {
+  display: none;
+}
+.hidden {
+  display: none;
+}

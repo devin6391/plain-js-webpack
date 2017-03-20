@@ -3,10 +3,22 @@
   <head>
     <meta charset="utf-8">
     <title>Plain-JS app</title>
+    <style media="screen">
+      <%= require('to-string-loader!css-loader!./index.css') %>
+    </style>
   </head>
   <body>
+    <% let loaderPath = 'components/initial-loader/' %>
+    <div class="loader-container"><%= require(`html-loader!./${loaderPath}loader.html`) %></div>
     <div class="header"></div>
     <div class="main-body"></div>
     <div class="footer"></div>
+    <script>
+      var loaderJs = <%= require("./components/initial-loader/loader.js") %>();
+      var mainJs = <%= require("./index.js") %>;
+      setTimeout(() => {
+        mainJs();
+      }, 0);
+    </script>
   </body>
 </html>

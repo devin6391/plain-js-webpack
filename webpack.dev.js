@@ -16,6 +16,8 @@ const sourceFolder = "src";
 const distFolder = "dist";
 const nodeFolder = "node_modules"
 
+let extractCSS = new ExtractTextPlugin(path.join(distFolder, "[name]-[contenthash].css"));
+
 module.exports = {
 	entry: {
 		"babel-polyfill": "babel-polyfill",
@@ -30,70 +32,72 @@ module.exports = {
 		filename: '[name]-[hash].js'
 	},
 	module: {
-		loaders: [{
-			test: /\.css$/,
-			loader: ExtractTextPlugin.extract({
-				fallback: 'style-loader',
-				use: 'css-loader'
-			})
-		}, {
+		rules: [
+		// 	{
+		// 	test: /\.css$/,
+		// 	exclude: /(node_modules|bower_components)/,
+		// 	use: extractCSS.extract([ 'css-loader', 'style-loader' ])
+		// },
+		{
 			test: /\.(jpe?g|png|gif|svg)$/i,
-			loader: 'file-loader?name=../../images/[name].[ext]'
+			use: 'file-loader?name=../../images/[name].[ext]'
 		}, {
 			test: /\.js$/,
 			exclude: /(node_modules|bower_components)/,
-			loader: 'babel-loader',
-			query: {
-				presets: ['es2015']
+			use: {
+				loader: 'babel-loader',
+				options: {
+					presets: ['es2015']
+				}
 			}
 		}, ]
 	},
 	plugins: [
-		new webpack.optimize.DedupePlugin(),
 		new CommonsChunkPlugin("commons.chunk.js"),
 		new webpack.EnvironmentPlugin([
 			'NODE_ENV'
 		]),
+		new HtmlWebpackInlineSourcePlugin(),
 		new HtmlWebpackPlugin({
 			template: path.join(__dirname, sourceFolder, "index.html"),
 			inject: false,
 			// excludeChunks: ['app-shell', 'custom-jq'],
-			filename: path.join(__dirname, distFolder, "index.html"),
+			filename: path.join(__dirname, distFolder, "index.html")
 		}),
-		new ExtractTextPlugin(path.join("common", "styles", "[name]-[contenthash].css")),
-		new FaviconsWebpackPlugin({
-			// Your source logo
-			logo: path.join(__dirname, sourceFolder, "images", "logo_JavaScript.png"),
-			// The prefix for all image files (might be a folder or a name)
-			prefix: 'icons-[hash]/',
-			// Emit all stats of the generated icons
-			emitStats: false,
-			// The name of the json containing all favicon information
-			statsFilename: 'iconstats-[hash].json',
-			// Generate a cache file with control hashes and
-			// don't rebuild the favicons until those hashes change
-			persistentCache: true,
-			// Inject the html into the html-webpack-plugin
-			inject: true,
-			// favicon background color (see https://github.com/haydenbleasel/favicons#usage)
-			background: '#fff',
-			// favicon app title (see https://github.com/haydenbleasel/favicons#usage)
-			title: 'VanillaJS-webpack App',
-
-			// which icons should be generated (see https://github.com/haydenbleasel/favicons#usage)
-			icons: {
-				android: true,
-				appleIcon: true,
-				appleStartup: true,
-				coast: false,
-				favicons: true,
-				firefox: true,
-				opengraph: false,
-				twitter: false,
-				yandex: false,
-				windows: false
-			}
-		}),
+		// extractCSS,
+		// new FaviconsWebpackPlugin({
+		// 	// Your source logo
+		// 	logo: path.join(__dirname, sourceFolder, "images", "logo_JavaScript.png"),
+		// 	// The prefix for all image files (might be a folder or a name)
+		// 	prefix: 'icons-[hash]/',
+		// 	// Emit all stats of the generated icons
+		// 	emitStats: false,
+		// 	// The name of the json containing all favicon information
+		// 	statsFilename: 'iconstats-[hash].json',
+		// 	// Generate a cache file with control hashes and
+		// 	// don't rebuild the favicons until those hashes change
+		// 	persistentCache: true,
+		// 	// Inject the html into the html-webpack-plugin
+		// 	inject: true,
+		// 	// favicon background color (see https://github.com/haydenbleasel/favicons#usage)
+		// 	background: '#fff',
+		// 	// favicon app title (see https://github.com/haydenbleasel/favicons#usage)
+		// 	title: 'VanillaJS-webpack App',
+		//
+		// 	// which icons should be generated (see https://github.com/haydenbleasel/favicons#usage)
+		// 	icons: {
+		// 		android: true,
+		// 		appleIcon: true,
+		// 		appleStartup: true,
+		// 		coast: false,
+		// 		favicons: true,
+		// 		firefox: true,
+		// 		opengraph: false,
+		// 		twitter: false,
+		// 		yandex: false,
+		// 		windows: false
+		// 	}
+		// }),
 		new CopyWebpackPlugin([{
 			from: path.join(__dirname, sourceFolder, "images"),
 			to: path.join(__dirname, distFolder, "images")

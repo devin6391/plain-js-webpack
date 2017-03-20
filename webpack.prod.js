@@ -20,7 +20,7 @@ const distFolder = "dist";
 module.exports = {
 	entry: {
 		"babel-polyfill": "babel-polyfill",
-		"index": path.join(__dirname, sourceFolder, "index.js"),
+		// "index": path.join(__dirname, sourceFolder, "index.js"),
 		"app-shell": path.join(__dirname, sourceFolder, "app-shell.js"),
 		"custom-jq": path.join(__dirname, sourceFolder, "common", "scripts", "custom-jq.js")
 	},
@@ -31,13 +31,15 @@ module.exports = {
 		filename: '[name]-[chunkhash].js'
 	},
 	module: {
-		loaders: [{
+		loaders: [
+			{
 			test: /\.css$/,
 			loader: ExtractTextPlugin.extract({
 				fallback: 'style-loader',
 				use: 'css-loader'
 			})
-		}, {
+		},
+		 {
 			test: /\.(jpe?g|png|gif|svg)$/i,
 			loader: 'file-loader?name=../../images/[name].[ext]'
 		}, {
@@ -50,7 +52,6 @@ module.exports = {
 		}]
 	},
 	plugins: [
-		new webpack.optimize.DedupePlugin(),
 		new CommonsChunkPlugin("commons.chunk.js"),
 		new webpack.EnvironmentPlugin([
 			'NODE_ENV'
@@ -71,11 +72,13 @@ module.exports = {
 			// },
 			excludeChunks: ['custom-jq'],
 			filename: path.join(__dirname, distFolder, "index.html"),
+			inlineSource: '(index)(\.js)',
 		}),
 		new ScriptExtHtmlWebpackPlugin({
 			defaultAttribute: 'async'
 		}),
-		new ExtractTextPlugin(path.join("common", "styles", "[name]-[contenthash].css")),
+		new HtmlWebpackInlineSourcePlugin(),
+		// new ExtractTextPlugin(path.join("common", "styles", "[name]-[contenthash].css")),
 		// new FaviconsWebpackPlugin({
 		// 	// Your source logo
 		// 	logo: path.join(__dirname, sourceFolder, "images", "logo_JavaScript.png"),
