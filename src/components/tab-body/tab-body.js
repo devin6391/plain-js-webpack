@@ -1,22 +1,22 @@
 export let tabsBodyObject = [
   {
     content: {
-      heading: "Single source of truth",
-      text: "This makes it easy to create universal apps, as the state from your server can be serialized and hydrated into the client with no extra coding effort. A single state tree also makes it easier to debug or introspect an application; it also enables you to persist your app's state in development, for a faster development cycle. Some functionality which has been traditionally difficult to implement - Undo/Redo, for example - can suddenly become trivial to implement, if all of your state is stored in a single tree."
+      heading: "Why Vanilla JS - Plain Simple Javascript",
+      text: "What comes to your mind when you are asked to develop a front-end application? This is a big question, because the JS world changes frequently and new technologies are being invented at the speed of light. Well, that could be an exaggeration 😃 ...but the truth is that choosing an approach to develop a front-end application can be tough, as we have so many options! Choosing an approach becomes even more important and requires greater responsibility if we're asked to work on an enterprise application. For any application, you need to ensure that development is easy and scalable. But remember, it has to go to production too, so it should be performant and lightweight."
     },
     id: 'tab-1'
   },
   {
     content: {
-      heading: "State is read only",
-      text: "This ensures that neither the views nor the network callbacks will ever write directly to the state. Instead, they express an intent to transform the state. Because all changes are centralized and happen one by one in a strict order, there are no subtle race conditions to watch out for. As actions are just plain objects, they can be logged, serialized, stored, and later replayed for debugging or testing purposes"
+      heading: "Two approaches to my knowledge",
+      text: "Use polymer: Polymer is a library and it is not a heavy framework. It prvides you a simple way to make web components. Polymer's development standard fully follows PWA guidelines. It gives you full freedom to choose your own libraries for stuffs like routing, promises, etc. \n For second approach - Please read rest of the article and write code with Vanilla JS."
     },
     id: 'tab-2'
   },
   {
     content: {
-      heading: "Changes are made with pure functions",
-      text: "Reducers are just pure functions that take the previous state and an action, and return the next state. Remember to return new state objects, instead of mutating the previous state. You can start with a single reducer, and as your app grows, split it off into smaller reducers that manage specific parts of the state tree. Because reducers are just functions, you can control the order in which they are called, pass additional data, or even make reusable reducers for common tasks such as pagination."
+      heading: "Good Build Tool - Using Webpack",
+      text: "Webpack is a great build tool for JavaScript. It provides almost everything you may want from your build tool. The best thing is that it reads everything as a JavaScript module. You can find hundreds of tutorials for webpack online."
     },
     id: 'tab-3'
   },

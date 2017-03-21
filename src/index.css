@@ -7,3 +7,6 @@
 body {
   margin: 0;
 }
+.server-mock {
+  border: 1px solid #000;
+}
