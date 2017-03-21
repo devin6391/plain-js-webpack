@@ -1,4 +1,21 @@
 .tab-content {
   height: 70px;
   display: flex;
+  background-color: #fff;
+  justify-content: space-around;
+  .tab-head-item {
+    display: flex;
+    margin: auto;
+    background-color: #1fd241;
+    width: 100px;
+    text-align: center;
+    padding: 10px 0;
+    justify-content: center;
+    transition: 0.3s;
+    cursor: pointer;
+    &:hover {
+      box-shadow: 0px 1px 10px 6px rgba(0, 0, 0, 0.5);
+      color: #fff;
+    }
+  }
 }

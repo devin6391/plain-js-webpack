@@ -1,4 +1,4 @@
-export let tabsObject = [
+export let tabsBodyObject = [
   {
     content: {
       heading: "Single source of truth",

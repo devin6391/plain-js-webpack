@@ -9,9 +9,9 @@ import { footerData } from "./components/footer/footer.js";
 import "./components/footer/footer.scss";
 let footerHtml = require('ejs-loader!./components/footer/footer.html')(footerData);
 
-import { tabsObject } from "./components/tab-body/tab-body.js";
+import { tabsBodyObject } from "./components/tab-body/tab-body.js";
 import "./components/tab-body/tab-body.scss";
-let tabBodyHtml = require('ejs-loader!./components/tab-body/tab-body.html')({tabsObject});
+let tabBodyHtml = require('ejs-loader!./components/tab-body/tab-body.html')({tabsBodyObject});
 
 let headerElem = null;
 let footerElem = null;
@@ -31,7 +31,7 @@ if(typeof document != "undefined") {
   populateHtml()
     .then(() => {
       setTimeout(() => document.dispatchEvent(readyEvent), 0);
-    })
+    });
 }
 
 function populateHtml() {

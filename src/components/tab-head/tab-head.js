@@ -1,10 +1,17 @@
 let tabBody = document.querySelector('.tab-body');
 
-let onClickFn = function(context) {
-  return new Promise((res, rej) => {
-    let elem = document.querySelector(`#${context.id}`);
-    tabBody.appendChild(elem);
+function hideTabs() {
+  let tabs = document.querySelectorAll('.single-tab');
+  tabs.forEach((tabDom) => {
+    tabDom.classList.add('hidden');
   });
+}
+
+window.tabClick = function(e, tabId) {
+  e.preventDefault();
+  hideTabs();
+  let elem = document.querySelector(`#${tabId}`);
+  elem.classList.remove('hidden');
 }
 
 export let tabsObject = [
