@@ -1,0 +1,8 @@
+<script type="text/javascript">
+  console.log('tabsObject ', <%= tabsObject %>);
+</script>
+<% tabsObject.forEach((tabItem) => { %>
+  <div class="tab-head-item">
+    ${tabItem.text}
+  </div>
+<% }) %>
