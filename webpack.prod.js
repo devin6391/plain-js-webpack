@@ -20,8 +20,7 @@ let extractCSS = new ExtractTextPlugin(path.join(distFolder, "[name]-[contenthas
 
 module.exports = {
 	entry: {
-		"babel-polyfill": "babel-polyfill",
-		// "index": path.join(__dirname, sourceFolder, "index.js"),
+		"polyfills": path.join(__dirname, sourceFolder, "common", "scripts", "polyfills.js"),
 		"app-shell": path.join(__dirname, sourceFolder, "app-shell.js"),
 		"custom-jq": path.join(__dirname, sourceFolder, "common", "scripts", "custom-jq.js")
 	},
@@ -73,13 +72,6 @@ module.exports = {
 		new webpack.EnvironmentPlugin([
 			'NODE_ENV'
 		]),
-		new CompressionPlugin({
-			asset: "[path].gz[query]",
-			algorithm: "gzip",
-			test: /\.js$|\.css$/,
-			threshold: 10240,
-			minRatio: 0.8
-		}),
 		// extractCSS,
 		new HtmlWebpackPlugin({
 			template: path.join(__dirname, sourceFolder, "index.html"),
@@ -93,9 +85,39 @@ module.exports = {
 			inlineSource: '(index)(\.js)',
 		}),
 		new ScriptExtHtmlWebpackPlugin({
+			sync: "commons.chunk",
 			defaultAttribute: 'async'
 		}),
 		// new ExtractTextPlugin(path.join("common", "styles", "[name]-[contenthash].css")),
+		new UglifyJsPlugin({
+			beautify: false,
+			output: {
+				comments: false
+			},
+			mangle: {
+				screw_ie8: true
+			},
+			compress: {
+				screw_ie8: true,
+				warnings: false,
+				conditionals: true,
+				unused: true,
+				comparisons: true,
+				sequences: true,
+				dead_code: true,
+				evaluate: true,
+				if_return: true,
+				join_vars: true,
+				negate_iife: false
+			},
+		}),
+		new CompressionPlugin({
+			asset: "[path].gz[query]",
+			algorithm: "gzip",
+			test: /\.js$|\.css$|\.html/,
+			threshold: 5000,
+			minRatio: 0.8
+		}),
 		new FaviconsWebpackPlugin({
 			// Your source logo
 			logo: path.join(__dirname, sourceFolder, "images", "logo_JavaScript.png"),
@@ -132,28 +154,7 @@ module.exports = {
 		new CopyWebpackPlugin([{
 			from: path.join(__dirname, sourceFolder, "images"),
 			to: path.join(__dirname, distFolder, "images")
-		}, ]),
-		new UglifyJsPlugin({
-			beautify: false,
-			output: {
-				comments: false
 			},
-			mangle: {
-				screw_ie8: true
-			},
-			compress: {
-				screw_ie8: true,
-				warnings: false,
-				conditionals: true,
-				unused: true,
-				comparisons: true,
-				sequences: true,
-				dead_code: true,
-				evaluate: true,
-				if_return: true,
-				join_vars: true,
-				negate_iife: false
-			},
-		}),
+		]),
 	],
 };

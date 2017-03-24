@@ -6,6 +6,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 let FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+var ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
 const ENV = process.env.ENV = process.env.NODE_ENV = 'development';
 const HOST = process.env.HOST || 'localhost';
@@ -19,8 +20,7 @@ let extractCSS = new ExtractTextPlugin(path.join(distFolder, "[name]-[contenthas
 
 module.exports = {
 	entry: {
-		"babel-polyfill": "babel-polyfill",
-		"index": path.join(__dirname, sourceFolder, "index.js"),
+		"polyfills": path.join(__dirname, sourceFolder, "common", "scripts", "polyfills.js"),
 		"app-shell": path.join(__dirname, sourceFolder, "app-shell.js"),
 		"custom-jq": path.join(__dirname, sourceFolder, "common", "scripts", "custom-jq.js")
 	},
@@ -66,7 +66,7 @@ module.exports = {
 		]
 	},
 	plugins: [
-		new CommonsChunkPlugin("commons.chunk.js"),
+		new CommonsChunkPlugin("commons.chunk"),
 		new webpack.EnvironmentPlugin([
 			'NODE_ENV'
 		]),
@@ -74,7 +74,11 @@ module.exports = {
 			template: path.join(__dirname, sourceFolder, "index.html"),
 			inject: true,
 			excludeChunks: ['custom-jq'],
-			filename: path.join(__dirname, distFolder, "index.html")
+			filename: path.join(__dirname, distFolder, "index.html"),
+		}),
+		new ScriptExtHtmlWebpackPlugin({
+			sync: "commons.chunk",
+			defaultAttribute: 'async'
 		}),
 		// extractCSS,
 		new FaviconsWebpackPlugin({
