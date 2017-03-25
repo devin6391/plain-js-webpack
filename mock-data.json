@@ -68,10 +68,12 @@
   "extLinks": [
     {
       "id": 1,
+      "text": "Article explaining the concepts",
       "link": "https://www.codementor.io/vineetdev/how-to-effectively-develop-vanilla-javascript-application-5k19c0ct9"
     },
     {
       "id": 2,
+      "text": "Git Repo",
       "link": "https://github.com/devin6391/plain-js-webpack"
     }
   ]
