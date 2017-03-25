@@ -1,8 +1,78 @@
 {
-  "posts": [
-    { "id": 1, "title": "json-server", "author": "typicode" }
+  "authors": [{
+    "id": 1,
+    "name": "Vineet Dev",
+    "expertise": "UI/Frontend/Javascript",
+    "experience": "4 years"
+  }],
+  "technologies": [
+    {
+      "id": 1,
+      "name": "Vanilla JS"
+    },
+    {
+      "id": 2,
+      "name": "EcmaScript6/ES2015"
+    },
+    {
+      "id": 3,
+      "name": "Webpack"
+    },
+    {
+      "id": 4,
+      "name": "Babel"
+    },
+    {
+      "id": 5,
+      "name": "Babel"
+    },
+    {
+      "id": 6,
+      "name": "UglifyJs"
+    },
+    {
+      "id": 7,
+      "name": "Sass"
+    },
+    {
+      "id": 8,
+      "name": "json-server"
+    },
+    {
+      "id": 9,
+      "name": "EJS"
+    },
+    {
+      "id": 10,
+      "name": "Fetch"
+    }
   ],
-  "comments": [
-    { "id": 1, "body": "some comment", "postId": 1 }
+  "restrictions": [
+    {
+      "id": 1,
+      "text": "You need node version greater than or equal to 6"
+    },
+    {
+      "id": 2,
+      "text": "You need yarn to be installed globally <command: npm i -g yarn>"
+    },
+    {
+      "id": 3,
+      "text": "Use yarn instead of npm for installing anything or the whole package.json"
+    },
+    {
+      "id": 4,
+      "text": "It is advisable to install http-server globally <command: npm i -g http-server>"
+    }
+  ],
+  "extLinks": [
+    {
+      "id": 1,
+      "link": "https://www.codementor.io/vineetdev/how-to-effectively-develop-vanilla-javascript-application-5k19c0ct9"
+    },
+    {
+      "id": 2,
+      "link": "https://github.com/devin6391/plain-js-webpack"
+    }
   ]
 }

@@ -1,5 +1,6 @@
 {
-  "/api/": "/",
-  "/show": "/posts/1",
-  "/blog/:category": "/posts?category=:category"
+  "/authorInfo": "/authors/1",
+  "/restrictions": "/restrictions",
+  "/technologies": "/technologies",
+  "/extLinks": "/extLinks"
 }

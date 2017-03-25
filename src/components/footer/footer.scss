@@ -24,4 +24,34 @@
   p {
     text-align: center;
   }
+  .footer-popup {
+    position: fixed;
+    top: 10vh;
+    bottom: 10vh;
+    left: 10vw;
+    right: 10vw;
+    background-color: #fff;
+    box-shadow: 1px 1px 15px 5px rgba(0,0,0,0.5);
+    .head {
+      height: 10%;
+      width: 100%;
+      border-bottom: 1px solid #000;
+      .close {
+        float: right;
+        padding: 3px;
+        border: 1px solid rgb(0,0,256);
+        margin-right: 10px;
+        cursor: pointer;
+        &:hover {
+          background-color: #000;
+          color: #fff;
+        }
+      }
+    }
+    .content {
+      height: 90%;
+      width: 100%;
+      background-color: #fff;
+    }
+  }
 }
