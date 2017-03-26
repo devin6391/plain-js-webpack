@@ -15,9 +15,10 @@
       padding: 5px 5px;
       background-color: #a233ef;
       cursor: pointer;
-      transition: 0.2s;
+      // transition: 0.2s;
       &:hover {
         box-shadow: 1px 1px 0px 4px rgba(0, 0, 0, 0.5);
+        color: yellow;
       }
     }
   }
