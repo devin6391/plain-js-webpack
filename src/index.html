@@ -29,5 +29,10 @@
         mainJs();
       }, 0);
     </script>
+    <% if(process.env.NODE_ENV == "production") { %>
+      <script type="text/javascript">
+        (<%= require("./common/scripts/register-sw.js") %>)();
+      </script>
+    <% } %>
   </body>
 </html>

@@ -8,6 +8,7 @@ var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 var CompressionPlugin = require("compression-webpack-plugin");
 let FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 var ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 
 const ENV = process.env.ENV = process.env.NODE_ENV = 'production';
 const HOST = process.env.HOST || 'localhost';
@@ -26,7 +27,7 @@ module.exports = {
 	},
 	devtool: 'cheap-module-source-map',
 	output: {
-		path: path.join(__dirname, distFolder),
+		path: distFolder,
 		publicPath: '',
 		filename: '[name]-[chunkhash].js'
 	},
@@ -156,5 +157,18 @@ module.exports = {
 			to: path.join(__dirname, distFolder, "images")
 			},
 		]),
+		new SWPrecacheWebpackPlugin(
+      {
+        cacheId: 'plain-js-webpack-babel',
+        filename: 'vanilla-sw-precache.js',
+        maximumFileSizeToCacheInBytes: 4194304,
+        minify: true,
+        runtimeCaching: [{
+          handler: 'cacheFirst',
+          urlPattern: /[.]mp3$/,
+        }],
+				stripPrefix : distFolder
+      }
+    ),
 	],
 };
