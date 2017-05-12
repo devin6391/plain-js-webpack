@@ -62,7 +62,27 @@ module.exports = {
 						includePaths: ["absolute/path/a", "absolute/path/b"]
 					}
 				}]
-			}
+			},
+			{
+	      test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
+	      use: "url-loader?limit=10000&mimetype=application/font-woff&name=/fonts/[name].[ext]"
+	    },
+	    {
+	      test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
+	      use: "url-loader?limit=10000&mimetype=application/font-woff&name=/fonts/[name].[ext]"
+	    },
+	    {
+	      test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+	      use: "url-loader?limit=10000&mimetype=application/octet-stream&name=/fonts/[name].[ext]"
+	    },
+	    {
+	      test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+	      use: "file-loader?name=/fonts/[name].[ext]"
+	    },
+	    {
+	      test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+	      use: "url-loader?limit=10000&mimetype=image/svg+xml&name=/fonts/[name].[ext]"
+	     }
 		]
 	},
 	plugins: [
