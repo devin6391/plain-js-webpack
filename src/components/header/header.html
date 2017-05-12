@@ -1,7 +1,7 @@
 <div class='header-text'>
   <span>${headerText}</span>
 </div>
-<div class="tab-content">
+<div class="col s12">
   <% var {tabsObject} = require('../tab-head/tab-head.js') %>
   <%= require("ejs-loader!../tab-head/tab-head.html")({tabsObject}) %>
 </div>

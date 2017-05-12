@@ -1,8 +1,7 @@
-<script type="text/javascript">
-  console.log('tabsObject ', <%= tabsObject %>);
-</script>
-<% tabsObject.forEach((tabItem) => { %>
-  <div class="tab-head-item" onclick='tabClick(event, "<%= tabItem.id %>")' >
-    ${tabItem.text}
-  </div>
-<% }) %>
+<ul class="tabs">
+  <% tabsObject.forEach((tabItem) => { %>
+    <div class="tab col s3" onclick='tabClick(event, "<%= tabItem.id %>")' >
+      <a href="#test1">${tabItem.text}</a>
+    </div>
+  <% }) %>
+</ul>
