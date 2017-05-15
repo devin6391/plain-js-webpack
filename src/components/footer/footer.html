@@ -25,8 +25,8 @@
         <p class="grey-text text-lighten-4">${appDesc}</p>
       </div>
       <div class="col l4 s12">
-        <h5 class="white-text">Ajax calls</h5>
-        <ul style="display:flex;">
+        <h5 class="white-text">Ajax mocking (only during local development)</h5>
+        <ul style="display:flex; flex-wrap: wrap;">
           <% listItems.forEach((val) => { %>
             <li class='open-ajax-modal' onclick="footerClick(event, this)" data-url="${val.url}">
               <a class="waves-effect waves-light btn" href="#ajax-modal">${val.text}</a>
