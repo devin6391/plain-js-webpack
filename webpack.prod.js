@@ -153,7 +153,7 @@ module.exports = {
 			// Inject the html into the html-webpack-plugin
 			inject: true,
 			// favicon background color (see https://github.com/haydenbleasel/favicons#usage)
-			background: '#fff',
+			background: '#ee6e73',
 			// favicon app title (see https://github.com/haydenbleasel/favicons#usage)
 			title: 'VanillaJS-webpack App',
 
@@ -186,7 +186,8 @@ module.exports = {
           handler: 'cacheFirst',
           urlPattern: /[.]mp3$/,
         }],
-				stripPrefix : distFolder
+				stripPrefix : distFolder,
+				staticFileGlobsIgnorePatterns: [/\.cache$/],
       }
     ),
 	],

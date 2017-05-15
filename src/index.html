@@ -15,12 +15,8 @@
     <div class="header"></div>
     <div class="main-body">
       <!-- server side views to be included only during production build -->
-      <% if(process.env.NODE_ENV == "development") { %>
         <% let owner = require('./components/server-side/mock-view.js')() %>
         <%= require('ejs-loader!./components/server-side/mock-view.html')(owner) %>
-      <% } else { %>
-        <%= require('html-loader!./components/server-side/server-view.html') %>
-      <% } %>
     </div>
     <div class="footer"></div>
     <script>
