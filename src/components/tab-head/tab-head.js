@@ -1,42 +1,17 @@
-let tabBody = document.querySelector('.tab-body');
-
-function hideTabs() {
-  let tabs = document.querySelectorAll('.single-tab');
-  tabs.forEach((tabDom) => {
-    tabDom.classList.add('hidden');
-  });
-}
-
-window.tabClick = function(e, tabId) {
-  e.preventDefault();
-  hideTabs();
-  let elem = document.querySelector(`#${tabId}`);
-  elem.classList.remove('hidden');
-}
-
 export let tabsObject = [
   {
-    text: "Tab 1",
+    text: "Why PlainJs",
     id: 'tab-1',
-    onClick: (e) => {
-      e.preventDefault();
-      return onClickFn(this);
-    }
+    initial: true
   },
   {
-    text: "Tab 2",
+    text: "2 Approaches",
     id: 'tab-2',
-    onClick: (e) => {
-      e.preventDefault();
-      return onClickFn(this);
-    }
+    initial: false
   },
   {
-    text: "Tab 3",
+    text: "Build Tool",
     id: 'tab-3',
-    onClick: (e) => {
-      e.preventDefault();
-      return onClickFn(this);
-    }
+    initial: false
   }
 ]

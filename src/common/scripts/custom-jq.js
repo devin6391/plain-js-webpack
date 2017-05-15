@@ -1,9 +1,7 @@
-import "../../../node_modules/jquery/src/core.js";
-import "../../../node_modules/jquery/src/selector.js";
-import "../../../node_modules/jquery/src/traversing.js";
-import "../../../node_modules/jquery/src/callbacks.js";
-import "../../../node_modules/jquery/src/core/ready.js";
-import "../../../node_modules/jquery/src/attributes.js";
-import "../../../node_modules/jquery/src/event.js";
-import "../../../node_modules/jquery/src/manipulation.js";
-import "../../../node_modules/jquery/src/serialize.js";
+window.$ = window.jQuery = require('materialize-css/node_modules/jquery/dist/jquery.js');
+require('materialize-css');
+
+$(document).ready(function(){
+  // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+  $('.modal').modal();
+});

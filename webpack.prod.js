@@ -101,7 +101,6 @@ module.exports = {
 				collapseWhitespace: true,
 				removeComments: true
 			},
-			excludeChunks: ['custom-jq'],
 			filename: path.join(__dirname, distFolder, "index.html"),
 			inlineSource: '(index)(\.js)',
 		}),

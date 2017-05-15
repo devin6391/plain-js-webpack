@@ -1,8 +1,14 @@
-<div class="tab-body">
+<div class="tab-body container">
   <% tabsBodyObject.forEach((tab, index) => { %>
-    <div class="single-tab <%= index != 0 ? 'hidden' : '' %> " id=${tab.id}>
-        <h3>${tab.content.heading}</h3>
-        <p>${tab.content.text}</p>
+    <div class="row section" id=${tab.id}>
+      <div class="col s12">
+        <div class="card blue-grey darken-1">
+          <div class="card-content white-text">
+            <span class="card-title">${tab.content.heading}</span>
+            <p>${tab.content.text}</p>
+          </div>
+        </div>
+      </div>
     </div>
-  <% }) %>
+    <% }) %>
 </div>

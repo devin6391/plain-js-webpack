@@ -1,7 +1,7 @@
-<ul>
+<!-- <ul>
   <% listItems.forEach((val) => { %>
     <li onclick="footerClick(event, this)" data-url="${val.url}">${val.text}</li>
-  <% }) %>
+    <% }) %>
 </ul>
 <p>${appDesc}</p>
 
@@ -13,5 +13,45 @@
     <div class="close" onclick="closeFooterPopup()">x</div>
   </div>
   <div class="content">
+  </div>
+</div> -->
+
+
+<footer class="page-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">Vineet Dev's product</h5>
+        <p class="grey-text text-lighten-4">${appDesc}</p>
+      </div>
+      <div class="col l4 s12">
+        <h5 class="white-text">Ajax calls</h5>
+        <ul style="display:flex;">
+          <% listItems.forEach((val) => { %>
+            <li class='open-ajax-modal' onclick="footerClick(event, this)" data-url="${val.url}">
+              <a class="waves-effect waves-light btn" href="#ajax-modal">${val.text}</a>
+            </li>
+            <% }) %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+      Look for more on
+      <a class="grey-text text-lighten-4 right" href="https://github.com/devin6391/plain-js-webpack">github</a>
+      <a class="grey-text text-lighten-4 right" style="margin-right: 10px;" href="https://www.codementor.io/vineetdev/how-to-effectively-develop-vanilla-javascript-application-5k19c0ct9">codementor</a>
+    </div>
+  </div>
+</footer>
+
+
+<div id="ajax-modal" class="modal footer-popup modal-fixed-footer">
+  <div class="modal-content">
+    <h4></h4>
+    <p></p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">OK</a>
   </div>
 </div>

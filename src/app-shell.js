@@ -2,6 +2,8 @@
  * This is app shell which will contain the most basic logic of this app and it will be lazyloaded
  */
 
+import "./styles/app-shell.scss";
+
  import { appHeader } from "./components/header/header.js";
  import "./components/header/header.scss";
  let headerHtml = require('ejs-loader!./components/header/header.html')(appHeader);

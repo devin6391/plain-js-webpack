@@ -1,3 +1,4 @@
+// require("materialize-css/js/modal.js");
 import { urls, fetchReq } from "../../common/scripts/http/http-service"
 
 let footerPopup;
@@ -28,13 +29,14 @@ window.footerClick = function(e, li) {
   if(typeof document !== "undefined") {
     footerPopup = document.querySelector('.footer-popup');
   }
-  footerPopup.classList.remove('hidden');
+  // footerPopup.classList.remove('hidden');
   fetchReq(li.dataset.url)
     .then((res) => {
       return res.json();
     })
     .then((data) => {
       fillFooterPopup(parseHttpData(data, li.dataset.url));
+      $('#ajax-modal').modal('open');
     })
 }
 
@@ -49,8 +51,8 @@ let cleanFooterPopup = function() {
 }
 
 let fillFooterPopup = function(data) {
-  footerPopup.querySelector('h3').innerText = data.heading;
-  footerPopup.querySelector('.content').appendChild(data.node);
+  footerPopup.querySelector('h4').innerText = data.heading;
+  footerPopup.querySelector('p').innerText = data.node.innerText;
 }
 
 let parseHttpData = function(data, forUrl) {

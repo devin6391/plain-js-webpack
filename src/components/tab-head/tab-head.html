@@ -1,7 +1,7 @@
-<ul class="tabs">
+<ul class="tabs tabs-transparent">
   <% tabsObject.forEach((tabItem) => { %>
-    <div class="tab col s3" onclick='tabClick(event, "<%= tabItem.id %>")' >
-      <a href="#test1">${tabItem.text}</a>
-    </div>
+    <li class="tab">
+      <a href=<%= "#" + tabItem.id %> class=<%= tabItem.initial ? 'active' : '' %> >${tabItem.text}</a>
+    </li>
   <% }) %>
 </ul>

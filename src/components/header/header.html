@@ -1,7 +1,19 @@
-<div class='header-text'>
-  <span>${headerText}</span>
+<!-- <div class='header-text'>
+  <span></span>
 </div>
 <div class="col s12">
   <% var {tabsObject} = require('../tab-head/tab-head.js') %>
   <%= require("ejs-loader!../tab-head/tab-head.html")({tabsObject}) %>
-</div>
+</div> -->
+
+
+<nav class="nav-extended">
+  <div class="nav-wrapper">
+    <a href="#" class="brand-logo center">${headerText}</a>
+  </div>
+
+  <div class="nav-content">
+    <% var {tabsObject} = require('../tab-head/tab-head.js') %>
+    <%= require("ejs-loader!../tab-head/tab-head.html")({tabsObject}) %>
+  </div>
+</nav>

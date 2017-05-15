@@ -93,7 +93,6 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			template: path.join(__dirname, sourceFolder, "index.html"),
 			inject: true,
-			excludeChunks: ['custom-jq'],
 			filename: path.join(__dirname, distFolder, "index.html"),
 		}),
 		new ScriptExtHtmlWebpackPlugin({
