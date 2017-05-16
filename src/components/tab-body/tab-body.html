@@ -15,9 +15,36 @@
     <div id="bottom-modal" class="modal bottom-sheet">
       <div class="modal-content">
         <div class="row">
-          <div class="col s3 date"></div>
-          <div class="col s3 month"></div>
-          <div class="col s3 year"></div>
+          <% let Moment = require('moment'); %>
+          <% let extendMoment = require('moment-range').extendMoment; %>
+          <% const moment = extendMoment(Moment); %>
+          <% const range = moment.range(moment('2011-04-15', 'YYYY-MM-DD'), moment().format('YYYY-MM-DD') ); %>
+          <% let months = moment.monthsShort(); %>
+          <% const years = Array.from(range.by('year')); %>
+          <div class="col s4 date">
+            <ul class="collection">
+              <% for(let i = 0; i < 30; i++) { %>
+                <li><a href="#!" class="collection-item"> <%= i+1 %> </a></li>
+
+              <% } %>
+            </ui>
+          </div>
+          <div class="col s4 month">
+            <ul class="collection">
+              <% months.forEach(month => { %>
+                <li><a href="#!" class="collection-item"> <%= month %> </a></li>
+
+              <% }) %>
+            </ul>
+          </div>
+          <div class="col s4 year">
+            <ul class="collection">
+              <% years.map(year => { %>
+                <li><a href="#!" class="collection-item"> <%= year.format('YYYY') %> </a></li>
+
+              <% }) %>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
